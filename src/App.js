@@ -18,7 +18,7 @@ function App() {
                     <Navbar.Brand onClick={() => { navigate('/')}}>ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link onClick={() => { navigate('/')}}>Home</Nav.Link>
-                        <Nav.Link onClick={() => { navigate('/detail')}}>Cart</Nav.Link>
+                        <Nav.Link onClick={() => { navigate('/detail')}}>Detail</Nav.Link>
                         {/* navigate(-1)을 적으면 뒤로 간다. navigate(1)을 적으면 앞으로 간다. */}
                     </Nav>
                 </Container>
@@ -41,7 +41,8 @@ function App() {
             </>
                     }
                 />
-                <Route path="/detail" element={<Detail></Detail>}/>
+                <Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>}/>
+                {/* 페이지 여러개 만들고 싶으면 :URL파라미터 써도 됩니다. */}
                 <Route path="/about" element={<About />}>
                     {/* Nested Routes */}
                     <Route path="member" element={<div>멤버임</div>} /> 
