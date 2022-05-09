@@ -24,9 +24,17 @@ const Detail = (props) => {
     let [alert, setAlert] = useState(true);
     let [count, setCount] = useState(0);
     let [tab, setTab] = useState(0);
+    let [fade, setFade] = useState('')
+    useEffect(() => {
+        let a = setTimeout(() => {setFade('end')}, 100)
+        return () => {
+            clearTimeout(a)
+            setFade('')
+
+        }
+    }, [])
 
     useEffect(() => {
-        console.log(1);
         let a = setTimeout(() => {
             setAlert(false)
         }, 2000)
@@ -49,7 +57,7 @@ const Detail = (props) => {
         .find((val) => val.id == id);
     // 정렬시 id로 id를 찾기 위해서
     return (
-        <div className="container">
+        <div className={`container start ${fade}`}>
             {/* <Btn bg="blue">버튼</Btn>
             <Btn bg="orange">버튼</Btn>
             <NewBtn bg='red'>뉴버튼</NewBtn> */
@@ -86,18 +94,40 @@ const Detail = (props) => {
             <TabContent tab={tab} />
         </div>
     )
+    // 전환애니메이션
+    // 1. 애니메이션 동작 전 className 만들기
+    // 2. 애니메이션 동작 후 className 만들기
+    // 3. className에 transition 속성 추가
+    // 4. 원할때 2번 className 부착
 }
 const TabContent = (props) => {
-    if(props.tab === 0){
-        return <div>내용0</div>
-    }else if(props.tab === 1){
-        return <div>내용1</div>
-    }else{
-        return <div>내용2</div>
-    }
+    let [fade, setFade] = useState('')
+    // if(props.tab === 0){
+    //     return <div>내용0</div>
+    // }else if(props.tab === 1){
+    //     return <div>내용1</div>
+    // }else{
+    //     return <div>내용2</div>
+    // }
 
+    
+    useEffect(() => {
+        let a = setTimeout(() => {setFade('end')}, 100)
+        
+        return () => {
+            clearTimeout(a);
+            setFade('')
+        }
+    }, [props.tab])
     //편법 
-    //return [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]
+    return (
+        <div className={`start ${fade}`}>
+           {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][props.tab]} 
+        </div>
+    )
+        
+        
+    
 }
 
 export default Detail;
