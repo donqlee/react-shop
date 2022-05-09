@@ -45,6 +45,20 @@ function App() {
                                 return [...prev, ...result.data];
                             })})
                             .catch(() => console.log('fail'))
+                            // 서버로 데이터 전송하는 POST 요청
+                            // axios.post('/blahblah.com', {name: 'kim})
+
+                            // 동시에 ajax 요청 여러개하려면
+                            // Promise.all([axios.get('https://codingapple1.github.io/shop/data2.json'), axios.get('https://codingapple1.github.io/shop/data3.json')])
+                            // .then((data) => {
+                            //     console.log(data)
+                            // })
+
+                            //서버와 데이터를 주고 받은때 문자자료만 주고 받을수 있음 (JSON)
+
+                            //fetch
+                            // fetch('https://codingapple1.github.io/shop/data3.json')
+                            // .then((data) => data.json())
                         }}>
                             더보기</button>
                       </div>
