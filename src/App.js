@@ -6,6 +6,7 @@ import Detail from './pages/Detail.js';
 import About from './pages/About.js';
 import './App.css';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
+import axios from 'axios';
 
 function App() {
 
@@ -36,9 +37,18 @@ function App() {
                                 return (<Card shoes={shoes[i]} i={i + 1} key={i + 1}/>)
                             })
                         }
-                    </div>
-                </div>
-            </>
+                        </div>
+                        <button onClick={ () => {
+                            axios.get('https://codingapple1.github.io/shop/data2.json')
+                            .then((result) => {
+                                setShoes((prev) => {
+                                return [...prev, ...result.data];
+                            })})
+                            .catch(() => console.log('fail'))
+                        }}>
+                            더보기</button>
+                      </div>
+                    </>
                     }
                 />
                 <Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>}/>
