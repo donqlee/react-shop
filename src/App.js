@@ -4,6 +4,7 @@ import data from './data.js'
 import Card from './Components/Card'
 import Detail from './pages/Detail.js';
 import About from './pages/About.js';
+import Cart from './pages/Cart.js'
 import './App.css';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import axios from 'axios';
@@ -77,6 +78,9 @@ function App() {
                     <Context1.Provider value={{stock, shoes}}>
                         <Detail shoes={shoes}></Detail>
                     </Context1.Provider>
+                }/>
+                <Route path="/cart" element={
+                    <Cart></Cart>
                 }/>
                 {/* 페이지 여러개 만들고 싶으면 :URL파라미터 써도 됩니다. */}
                 <Route path="/about" element={<About />}>
