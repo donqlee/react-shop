@@ -1,13 +1,15 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeName } from '../store';
 
 const Cart = () => {
-    let a = useSelector((state) => {return state});
-    console.log(a.item);
+    let state = useSelector((state) => {return state});
+    let dispatch = useDispatch()
 
     return (
         <div>
+            {state.user}
             <Table>
                 <thead>
                     <tr>
@@ -19,13 +21,13 @@ const Cart = () => {
                 </thead>
                 <tbody>
                     {
-                        a.item.map((v, i) => {
+                        state.cart.map((v, i) => {
                             return(
-                                <tr>
+                                <tr key={i}>
                                     <td>{i + 1}</td>
                                     <td>{v.name}</td>
                                     <td>{v.count}</td>
-                                    <td>안녕</td>
+                                    <td><button onClick={() => dispatch(changeName())}>+</button></td>
                                 </tr>
                             )
                         })
