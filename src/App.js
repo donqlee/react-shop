@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {createContext, useState} from 'react';
 import {Button, Navbar, Container, Nav} from 'react-bootstrap';
 import data from './data.js'
 import Card from './Components/Card'
@@ -8,9 +8,17 @@ import './App.css';
 import {Routes, Route, Link, useNavigate, Outlet} from 'react-router-dom'
 import axios from 'axios';
 
+// ContextAPI
+// 셋팅1. createContext()
+// 셋팅2. <Context>로 원하는 컴포넌트 감싸기
+// 셋팅3. value={{state1, state2...}}
+
+export let Context1 = createContext();
+
 function App() {
 
     let [shoes, setShoes] = useState(data);
+    let [stock, setStock] = useState([10, 11, 12]);
     let navigate = useNavigate();
     return (
         <div className="App">
@@ -65,7 +73,11 @@ function App() {
                     </>
                     }
                 />
-                <Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>}/>
+                <Route path="/detail/:id" element={
+                    <Context1.Provider value={{stock, shoes}}>
+                        <Detail shoes={shoes}></Detail>
+                    </Context1.Provider>
+                }/>
                 {/* 페이지 여러개 만들고 싶으면 :URL파라미터 써도 됩니다. */}
                 <Route path="/about" element={<About />}>
                     {/* Nested Routes */}

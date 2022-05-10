@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import styled from 'styled-components';
 import {Nav} from 'react-bootstrap';
+import {Context1} from './../App.js'
 
 // props로 컴포넌트 재활용가능
 let Btn = styled.button `
@@ -20,7 +21,16 @@ let NewBtn = styled(Btn)`
 // 2. 스타일이 다른 js파일로 오염되지 않음 (오염방지하려면 컴포넌트.module.css도 가능)
 // 3. 페이지 로딩시간 단축 (<style></style>로 넣어줌)
 
+
+// context API state 사용
+// 1. Context를 import
+// 2. useContext(Context)
+
+
 const Detail = (props) => {
+
+    let {shoes, stock} = useContext(Context1);
+    console.log(stock)
     let [alert, setAlert] = useState(true);
     let [count, setCount] = useState(0);
     let [tab, setTab] = useState(0);
