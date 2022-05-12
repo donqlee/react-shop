@@ -1,18 +1,13 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
+import user from './store/useSlice.js'
 
-let user = createSlice({
-    name: 'user',
-    initialState: 'kim',
-    reducers: {
-        changeName(state){
-            return 'john' + state
-        }
-    }
-})
 
-export let { changeName } = user.actions
+    //1. reducers에 state 수정해주는 함수 만들기
+    //2. 만든 함수 export 해야함
+    //3. 만든 함수 import해서 사용
+    //4. dispatch(state변경함수())
 
-let stock = createSlice({
+let stock = createSlice({ //useState와 비슷
     name: 'stock',
     initialState: [10, 11, 12]
 })
@@ -35,3 +30,8 @@ export default configureStore({
     cart : cart.reducer
   }
 }) 
+
+
+// 리덕스 사용하기 위한 셋팅
+// 셋팅 1. store.js 파일 생성 & 코드 복붙
+// 셋팅 2. index.js 가서 <Provider store={store}> 쓰기

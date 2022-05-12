@@ -1,15 +1,16 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeName } from '../store';
+import { changeAge, changeName } from '../store/useSlice.js';
 
 const Cart = () => {
-    let state = useSelector((state) => {return state});
+    let state = useSelector((state) => {return state}); //redux store를 가져와줌
     let dispatch = useDispatch()
 
     return (
         <div>
-            {state.user}
+            <h6>{state.user.name}의 장바구니 나이는 {state.user.age}</h6>
+            <button onClick={() => dispatch(changeAge(10))}>버튼</button>
             <Table>
                 <thead>
                     <tr>
@@ -24,7 +25,7 @@ const Cart = () => {
                         state.cart.map((v, i) => {
                             return(
                                 <tr key={i}>
-                                    <td>{i + 1}</td>
+                                    <td>{v.id}</td>
                                     <td>{v.name}</td>
                                     <td>{v.count}</td>
                                     <td><button onClick={() => dispatch(changeName())}>+</button></td>
