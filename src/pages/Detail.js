@@ -1,8 +1,10 @@
 import React, {useContext, useEffect, useState} from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from "react-router-dom";
 import styled from 'styled-components';
 import {Nav} from 'react-bootstrap';
 import {Context1} from './../App.js'
+import {addCart} from '../store.js'
 
 // props로 컴포넌트 재활용가능
 let Btn = styled.button `
@@ -29,12 +31,14 @@ let NewBtn = styled(Btn)`
 
 const Detail = (props) => {
 
-    let {shoes, stock} = useContext(Context1);
-    console.log(stock)
+    // let {shoes, stock} = useContext(Context1);
+
     let [alert, setAlert] = useState(true);
     let [count, setCount] = useState(0);
     let [tab, setTab] = useState(0);
     let [fade, setFade] = useState('')
+    let dispatch = useDispatch()
+
     useEffect(() => {
         let a = setTimeout(() => {setFade('end')}, 100)
         return () => {
@@ -86,7 +90,7 @@ const Detail = (props) => {
                     <h4 className="pt-5">{shoe.title}</h4>
                     <p>{shoe.content}</p>
                     <p>{shoe.price}원</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <button className="btn btn-danger" onClick={() => dispatch(addCart({id : 1, name : 'ddd', count: 1}))}>주문하기</button>
                 </div>
             </div>
 

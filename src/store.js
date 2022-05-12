@@ -18,9 +18,18 @@ let cart = createSlice({
         [
             {id : 0, name : 'White and Black', count : 2},
             {id : 2, name : 'Grey Yordan', count : 1}
-        ] 
+        ],
+    reducers: {
+        changeCount(state, action){
+            let index = state.findIndex((a) => a.id === action.payload )
+            state[index].count++;
+        },
+        addCart(state, action){
+            state.push(action.payload)
+        }
+    } 
 })
-
+export let {changeCount, addCart} = cart.actions;
 
 
 export default configureStore({
