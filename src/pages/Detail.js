@@ -33,6 +33,16 @@ const Detail = (props) => {
 
     // let {shoes, stock} = useContext(Context1);
 
+    useEffect(() => {
+        let watchedArr = JSON.parse(localStorage.getItem('watched'));
+        console.log(watchedArr);
+        watchedArr.push(shoe.id);
+        // watchedArr = new Set(watchedArr);
+        // watchedArr = Array.from(watchedArr);
+        localStorage.setItem('watched', JSON.stringify(watchedArr));
+        
+    }, [])
+
     let [alert, setAlert] = useState(true);
     let [count, setCount] = useState(0);
     let [tab, setTab] = useState(0);

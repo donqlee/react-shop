@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import {createContext, useState, useEffect} from 'react';
 import {Button, Navbar, Container, Nav} from 'react-bootstrap';
 import data from './data.js'
 import Card from './Components/Card'
@@ -17,6 +17,13 @@ import axios from 'axios';
 export let Context1 = createContext();
 
 function App() {
+    useEffect(() => {
+        if(!localStorage.getItem('wathed')){
+            console.log('none')
+            localStorage.setItem('watched', JSON.stringify([]))
+        }
+        
+    }, []);
 
     let [shoes, setShoes] = useState(data);
     let [stock, setStock] = useState([10, 11, 12]);
@@ -27,8 +34,8 @@ function App() {
                 <Container>
                     <Navbar.Brand onClick={() => { navigate('/')}}>ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link onClick={() => { navigate('/')}}>Home</Nav.Link>
-                        <Nav.Link onClick={() => { navigate('/detail')}}>Detail</Nav.Link>
+                        <Nav.Link onClick={() => { navigate('/detail/1')}}>Home</Nav.Link>
+                        <Nav.Link onClick={() => { navigate('/detail/0')}}>Detail</Nav.Link>
                         <Nav.Link onClick={() => { navigate('/cart')}}>Cart</Nav.Link>
                         {/* navigate(-1)을 적으면 뒤로 간다. navigate(1)을 적으면 앞으로 간다. */}
                     </Nav>
