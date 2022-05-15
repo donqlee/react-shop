@@ -37,8 +37,8 @@ const Detail = (props) => {
         let watchedArr = JSON.parse(localStorage.getItem('watched'));
         console.log(watchedArr);
         watchedArr.push(shoe.id);
-        // watchedArr = new Set(watchedArr);
-        // watchedArr = Array.from(watchedArr);
+        watchedArr = new Set(watchedArr);
+        watchedArr = Array.from(watchedArr);
         localStorage.setItem('watched', JSON.stringify(watchedArr));
         
     }, [])
@@ -94,13 +94,13 @@ const Detail = (props) => {
 
             <div className="row">
                 <div className="col-md-6">
-                    <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
+                    <img src={`https://codingapple1.github.io/shop/shoes${shoe.id + 1}.jpg`} width="100%"/>
                 </div>
                 <div className="col-md-6 mt-4">
                     <h4 className="pt-5">{shoe.title}</h4>
                     <p>{shoe.content}</p>
                     <p>{shoe.price}원</p>
-                    <button className="btn btn-danger" onClick={() => dispatch(addCart({id : 1, name : 'ddd', count: 1}))}>주문하기</button>
+                    <button className="btn btn-danger" onClick={() => dispatch(addCart({id : shoe.id, name : shoe.title, count: 1}))}>주문하기</button>
                 </div>
             </div>
 

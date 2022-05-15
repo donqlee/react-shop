@@ -18,8 +18,7 @@ export let Context1 = createContext();
 
 function App() {
     useEffect(() => {
-        if(!localStorage.getItem('wathed')){
-            console.log('none')
+        if(!localStorage.getItem('watched')){
             localStorage.setItem('watched', JSON.stringify([]))
         }
         
@@ -34,7 +33,7 @@ function App() {
                 <Container>
                     <Navbar.Brand onClick={() => { navigate('/')}}>ShoeShop</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link onClick={() => { navigate('/detail/1')}}>Home</Nav.Link>
+                        <Nav.Link onClick={() => { navigate('/')}}>Home</Nav.Link>
                         <Nav.Link onClick={() => { navigate('/detail/0')}}>Detail</Nav.Link>
                         <Nav.Link onClick={() => { navigate('/cart')}}>Cart</Nav.Link>
                         {/* navigate(-1)을 적으면 뒤로 간다. navigate(1)을 적으면 앞으로 간다. */}
@@ -51,7 +50,7 @@ function App() {
                         <div className="row">
                         {
                             shoes.map((v, i) => {
-                                return (<Card shoes={shoes[i]} i={i + 1} key={i + 1}/>)
+                                return (<Card shoes={shoes[i]} i={i + 1} key={i + 1} />)
                             })
                         }
                         </div>
